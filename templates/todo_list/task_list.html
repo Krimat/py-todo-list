@@ -2,6 +2,7 @@
 
 {% block content %}
     <a href="{% url 'todo_list:task_create' %}">Create new task</a>
+    <p1>Todo List</p1>
     <ul>
         {% for task in tasks %}
             {{ task.content }}
