@@ -20,6 +20,14 @@
             <br>
             <a href="{% url 'todo_list:task_update' pk=task.id %}">Update</a>
             <a href="{% url 'todo_list:task_delete' pk=task.id %}">Delete</a>
+            <form action="{% url 'todo_list:task_change_status' pk=task.id %}" method="post">
+                {% csrf_token%}
+                {% if task.done %}
+                    <input type="submit" value="Undo">
+                {% else %}
+                    <input type="submit" value="Complete">
+                {% endif %}
+            </form>
             <br>
             <br>
         {% endfor %}

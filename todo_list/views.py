@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from todo_list.forms import TaskForm
@@ -61,4 +62,17 @@ class TaskDeleteView(DeleteView):
     model = Task
     success_url = reverse_lazy('todo_list:index')
     template_name = 'todo_list/task_delete_confirm.html'
+
+
+class TaskChangeStatusView(View):
+    def post(self, request, pk):
+        task = Task.objects.get(id=pk)
+        task.done = not task.done
+        task.save()
+
+        return redirect(reverse_lazy('todo_list:index'), permanent=True)
+
+    def get(self, request):
+        return redirect(reverse_lazy('todo_list:index'), permanent=True)
+
 
