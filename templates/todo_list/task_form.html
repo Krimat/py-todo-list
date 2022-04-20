@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% if object %}
+        Update
+        {% else %}
+        Create
+    {% endif %}
+    Task
     <form action="" method="post" novalidate>
         {% csrf_token %}
         {{ form.as_p }}

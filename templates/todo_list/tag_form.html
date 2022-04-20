@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% if object %}
+        Update
+        {% else %}
+        Create
+    {% endif %}
+    Tag
     <form action="" method="post">
+
         {% csrf_token %}
         {{ form }}
 
