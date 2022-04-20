@@ -5,6 +5,9 @@ from django.db.models import UniqueConstraint
 class Tag(models.Model):
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
 
 class Task(models.Model):
     content = models.CharField(max_length=1023)
@@ -27,3 +30,7 @@ class Task(models.Model):
 
     class Meta:
         ordering = ['done', 'created_at']
+
+
+    def __str__(self):
+        return self.content
