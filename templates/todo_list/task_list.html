@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a href="{% url 'todo_list:task_create' %}">Create new task</a>
+    <ul>
+        {% for task in tasks %}
+            {{ task.content }}
+            <br>
+            {{ task.created_at }}
+            <br>
+            Tags:  {% for tag in task.tags.all %}
+                {{ tag.name }}
+            {% endfor %}
+            <br>
+            {% if task.done %}
+                Done
+            {% else %}
+                Not Done
+            {% endif %}
+            <br>
+            <a href="{% url 'todo_list:task_update' pk=task.id %}">Update</a>
+            <a href="{% url 'todo_list:task_delete' pk=task.id %}">Delete</a>
+            <br>
+            <br>
+        {% endfor %}
+    </ul>
+
+
+{% endblock %}

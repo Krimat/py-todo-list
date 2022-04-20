@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <a href="{% url 'todo_list:tag_create' %}">Add Tag</a>
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>Update</td>
+            <td>Delete</td>
+        </tr>
+        {% for tag in tags %}
+            <tr>
+                <td>{{ tag.name }}</td>
+                <td><a href="{% url 'todo_list:tag_update' pk=tag.id%}">Update</a></td>
+                <td><a href="{% url 'todo_list:tag_delete' pk=tag.id%}">Delete</a></td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock %}
